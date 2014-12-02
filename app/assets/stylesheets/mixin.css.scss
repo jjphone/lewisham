@@ -1,0 +1,95 @@
+.red	{ border: 1px solid red; }
+.yellow	{ border: 1px solid yellow; }
+.blue	{ border: 1px solid blue; }
+.green	{ border: 1px solid green; }
+.lime	{ border: 1px solid lime; }
+.black	{ border: 1px solid black; }
+.aqua	{ border: 1px solid aqua; }
+
+.no-gap { margin:0; padding:0;}
+.no-v-gap { margin: 0 auto; padding: 0 auto;}
+.hidden { @extend .no-gap; display:none; }
+
+/* definition */
+$set1-prime: 	#007fff;
+$set1-light-B: 	#aad6ff;	$set1-light-N:	#aad6ff;
+$set1-dark-B:	#003366;	$set1-dark-N:	#003366;
+
+$set2-prime: 	#ffa000;
+$set2-light-B: 	#ffbb00;	$set2-light-N:	#ffbb00;
+$set2-dark-B:	#b27f00;	$set2-dark-N:	#b27f00;
+$cell-height: 	320px;		$cell-border: 	#eee;
+$footer-height:	50px;
+$canvas-aside-width: 85%;
+$canvas-content-width: 100%;
+$canvas-toggle-beg: -10px; $canvas-toggle-end: 10px;
+/* menu color */
+$home-color:	#f00;		$home-color-h:	#e30;
+$mail-color:	#03f;		$mail-color-h: 	#00f;
+$friend-color:	#3c3;  		$friend-color-h: lime;
+$login-color:	#c3f;		$login-color-h:	#c0c;
+
+@mixin glow-text-shadow($light-color, $dark-color) {
+	text-shadow:	
+		0 0 5px  $light-color,	0 0 10px $light-color, 0 0 15px $light-color, 
+		0 0 20px $dark-color, 	0 0 30px $dark-color,  0 0 40px $dark-color, 
+		0 0 50px $dark-color, 	0 0 75px $dark-color;
+}
+
+@mixin transparent-ratio($ratio) {
+	filter:		alpha(opacity=$ratio);	opacity:	$ratio/100 ;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$ratio)";
+}
+
+
+@mixin background-gradient($left, $lside, $rside, $right) {
+	background: -webkit-linear-gradient(90deg, $left, $lside, $rside, $right), -webkit-linear-gradient(0deg, $left, $lside, $rside, $right);
+	background: -o-linear-gradient(90deg, $left, $lside, $rside, $right), -o-linear-gradient(0deg, $left, $lside, $rside, $right);
+	background: -moz-linear-gradient(90deg, $left, $lside, $rside, $right), -moz-linear-gradient(0deg, $left, $lside, $rside, $right);
+	background: linear-gradient(90deg, $left, $lside, $rside, $right), linear-gradient(0deg, $left, $lside, $rside, $right);
+}
+
+@mixin cell-color($bgcolor, $txtcolor, $side-color, $left-ratio, $right-ratio) {
+	>div {	top: 0;	width:100%; height:100%; }
+	>div:first-of-type {
+		@include background-gradient($side-color, $left-ratio, $right-ratio, $side-color);
+		border-radius: 0.3rem; 
+		color: $txtcolor; background-size: 100% 50%, 50% 100%;
+	}
+
+	>div:last-of-type	/* background colors and images */  {
+		left: 0px;	position:absolute;
+		-webkit-animation: composite 5s infinite alternate;
+		z-index: -1; background: $bgcolor;
+	}
+}
+
+@mixin menu-effect ($link, $hover, $shadow) {
+	a, a>i 		{	color: $link !important; }
+	a:hover, a:hover>i, a:active, a:active>i { color: $hover; @include glow-text-shadow($shadow, $hover)  } 
+}
+
+@mixin keyframes($animation-name ) {
+	@-webkit-keyframes $animation-name 	{ @content;}
+    @-moz-keyframes $animation-name 	{ @content;}
+    @-ms-keyframes $animation-name 		{ @content;}
+    @-o-keyframes $animation-name 		{ @content;}
+    @keyframes $animation-name 			{ @content;}
+}
+
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-ms-animation: #{$str};
+	-o-animation: #{$str};
+	animation: #{$str};
+}
+
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}

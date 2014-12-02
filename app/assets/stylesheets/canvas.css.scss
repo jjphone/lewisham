@@ -1,0 +1,54 @@
+
+div.canvas, div.canvas>div.content, div.canvas>aside{ height: $cell-height; }
+
+div.canvas  { //div.cell>div.cell-content
+	@extend .no-gap; position:relative; 
+	left: 0; opacity:1; //transition values
+	>a.canvas-toggle{
+		@extend .btn, .btn-default, .btn-sm;
+		border-radius:48%; opacity: 0; //display:none;
+		position: absolute; z-index: -1; right: $canvas-toggle-beg; top: 8px;
+		>i {@extend .glyphicon, .glyphicon-chevron-left;}
+	}
+	
+	>aside{ top:0; left:$canvas-content-width; width: $canvas-aside-width; 
+		background: rgba(#464692, 0.85);
+		border-left: 2px outset lighten(#464692, 30%);
+		position:absolute; 
+	}
+	>div.content{
+		width: $canvas-content-width;
+	}
+}
+
+/* div.cell>div.cell-content>div.canvas >aside */
+div.canvas.canvas-toggled-add, div.canvas.canvas-toggled-remove{
+	@include transition(all 1s ease-out 0.3s);
+	opacity: 0.7;
+}
+div.canvas.canvas-toggled-add {	
+	left: -1*$canvas-aside-width;
+	>a.canvas-toggle>i{ @extend .glyphicon-chevron-left;}
+}
+div.canvas.canvas-toggled-remove {
+	left:0;
+	>a.canvas-toggle>i{ @extend .glyphicon-chevron-right;}
+}
+div.canvas.canvas-toggled:not(.canvas-toggled-add){ 
+	left: -1*$canvas-aside-width; >div{ opacity: 0.8;}
+	>a.canvas-toggle>i{ @extend .glyphicon-chevron-right;}
+ }
+
+/* div.cell>div.cell-content>div.canvas > a.canvas-toggle */
+div.canvas.show-add, div.canvas.show-add>a.canvas-toggle,
+div.canvas.show-remove, div.canvas.show-remove>a.canvas-toggle {
+	@include transition(all 1s ease-out .5s);
+}
+
+div.canvas.show-add>a { opacity: 0.7; right: $canvas-toggle-end;}
+
+div.canvas.show-remove>a {opacity: 0; right:$canvas-toggle-beg;}
+
+div.canvas.show>a.canvas-toggle {
+	z-index:1; opacity: 0.7; right: $canvas-toggle-end; 
+}

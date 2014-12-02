@@ -1,0 +1,64 @@
+body{ 
+	padding: 50px initial; background: #eee;
+	>div.container{	background: #fefefe; padding: 0 30px 30px;}
+}
+
+
+
+
+
+div.main>div:not(.span2){ @extend .col-xs-6, .col-sm-4, .col-md-3; }
+div.main>div.span2{ //@extend .lime;
+		@extend .col-xs-12, .col-sm-12, .col-md-6;
+}
+
+
+div.main{ //@extend .red;
+	@extend .row;
+	padding-bottom: 20px;
+	>div, div>div { width:100%; height: $cell-height; padding:0!important;}
+	>div{ //cell
+		@extend .lime;
+		overflow: hidden;
+		position: relative; 
+		border-top: 1px outset $cell-border; border-left: 1px solid $cell-border;
+		@include cell-color(#fefefe, #333, #ccc, transparent 35%, transparent 75% );
+		padding: 0;
+		
+		background:aqua;
+
+		//div.cell-content>div.canvas>div.content
+		>div>div>div, >div>div>aside {
+			padding: 5px 10px !important;
+			color: red;
+		} 
+	}
+	
+
+
+
+}
+
+
+div.form{;}
+
+/* x-small > 768px  */
+@media (max-width: $screen-xs-max) { 
+	
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+	
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) { 
+	//body>div.container {padding:0 20px 20px;} 
+}
+
+.test {
+	background: #111;
+	-ms-transform: translateX(-1*$canvas-aside-width);
+	-webkit-transform: translateX(-1*$canvas-aside-width);
+	transform: translateX(-1*$canvas-aside-width);
+}
