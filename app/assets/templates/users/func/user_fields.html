@@ -1,0 +1,80 @@
+<div>
+	<div> <label for="name">Name</label></div>
+	<div><input id="name" name="user[name]" type="text" ng-model="users.j.vs.view.data.main.pack.name" ng-minlength="6" ng-maxlength="50"  /></div>
+	<div>
+		<span ng-show="users.errorField( profile,'user[name]', 'minlength')">min 6 chars</span>
+		<span ng-show="users.errorField( profile,'user[name]', 'maxlength')">max 50 chars</span>
+		<ng ng-if="users.errorMsg('name')" field-input="name"></ng>
+	</div>
+</div>
+
+<div>
+	<div> <label for="email">Email</label> </div>
+	<div> <input id="email" name="user[email]" type="text" ng-model="users.j.vs.view.data.main.pack.email" ng-minlength="6" ng-maxlength="100" ng-pattern="/^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i" /> </div>
+	<div>
+		<span ng-show="users.errorField( profile,'user[email]', 'minlength')">min 6 chars</span>
+		<span ng-show="users.errorField( profile,'user[email]', 'maxlength')">max 100 chars</span>
+		<span ng-show="users.errorField( profile,'user[email]', 'pattern')">invalid email pattern</span>
+		<ng ng-if="users.errorMsg('email')" field-input="email"></ng>
+	</div>
+</div>
+
+<div>
+	<div><label for="phone">Phone</label></div>
+	<div><input id="phone" name="user[phone]" type="text" ng-model="users.j.vs.view.data.main.pack.phone" ng-minlength="6" ng-maxlength="20" ng-pattern="/^[+|-]*\d+$/" /> </div>
+	<div>
+		<span ng-show="users.errorField( profile,'user[phone]', 'minlength')">min 6 chars</span>
+		<span ng-show="users.errorField( profile,'user[phone]', 'maxlength')">max 20 chars</span>
+		<span ng-show="users.errorField( profile,'user[phone]', 'pattern')">invalid phone number pattern</span>
+		<ng ng-if="users.errorMsg('phone')" field-input="phone"></ng>
+	</div>
+</div>
+
+<div>
+	<div><label for="login">Login</label></div>
+	<div>
+		<input id="login" name="user[login]" type="text" ng-model="users.j.vs.view.data.main.pack.login" ng-minlength="6" ng-maxlength="50" ng-pattern="/^[a-z][a-z0-9]*(-){1}[a-z0-9]+$/"  />
+	</div>
+	<div>
+		<span ng-show="users.errorField( profile,'user[login]', 'minlength')">min 6 chars</span>
+		<span ng-show="users.errorField( profile,'user[login]', 'maxlength')">max 50 chars</span>
+		<span ng-show="users.errorField( profile,'user[login]', 'pattern')">invalid login number pattern</span>
+		<ng ng-if="users.errorMsg('login')" field-input="login"></ng>
+	</div>
+</div>
+
+<div>
+	<div><label for="avatar"><img class="avatar" ng-src="{{users.j.vs.view.data.main.pack.avatar_url}}" title="avatar" /></label></div>
+	
+	<div>
+		<div class="avatar_upload">Upload New Image	<input id="avatar" type="file" upload="files" name="user[avatar]" /> </div>
+	</div>
+	<div><ng ng-if="users.errorMsg('avatar')" field-input="avatar"></ng></div>
+</div>
+
+<div>
+	<div><label for="password" >Password</label></div>
+	<div>
+		<input id="password" name="user[password]" type="password" ng-model="users.j.vs.view.data.password" ng-minlength="6" ng-maxlength="30" match-with="{{users.j.vs.view.data.password_confirmation}}"  />
+	</div>
+	<div>
+		<span ng-show="users.errorField(profile,'user[password]', 'minlength')">min 6 chars</span>
+		<span ng-show="users.errorField(profile,'user[password]', 'maxlength')">max 30 chars</span>
+		<span ng-show="users.errorField(profile, 'user[password]', 'matched')">Retype password not match</span>
+		<ng ng-if="users.errorMsg('password')" field-input="password"></ng>
+	</div>
+</div>
+
+<div >
+	<div><label for="confirm">Retype password</label></div>
+	<div class="retype_pwd">
+		<input id="confirm" name="user[password_confirmation]" type="password" ng-model="users.j.vs.view.data.password_confirmation" match-with="{{users.j.vs.view.data.password}}" />
+	</div>
+	<div>
+		<span ng-show="users.errorField( profile,'user[password_confirmation]', 'mismatch')">password and confirmation mismatch</span>
+		<span ng-show="users.errorField(profile, 'user[password_confirmation]', 'matched')">password not match</span>	
+	</div>
+
+</div>
+
+<hr class="gap10-20" />

@@ -6,9 +6,56 @@
 .black	{ border: 1px solid black; }
 .aqua	{ border: 1px solid aqua; }
 
-.no-gap { margin:0; padding:0;}
+ng, .no-gap { margin:0; padding:0;}
 .no-v-gap { margin: 0 auto; padding: 0 auto;}
 .hidden { @extend .no-gap; display:none; }
+
+.ng-error { @extend .label, .label-danger;}
+
+.dark-bg {background: #333;}
+hr.gap10-20{margin:5px 10px 10px;}
+.fields{
+	>div:not(.submit-group) { 
+		@extend .row;
+		margin: 5px auto;
+		>div {padding: 5px;}
+		>div:nth-child(1) { 
+			@extend .col-md-2, .col-sm-3, .col-xs-2;
+			text-align: right;
+			>label { @extend .control-label;}
+		}
+		>div:nth-child(2) {
+			@extend .col-md-7, .col-sm-6, .col-xs-10;
+			padding:0;
+			>input{	padding:5px; width:100%; }
+			>input.ng-invalid {background: #FB9398; }
+			
+		}
+		>div:nth-child(3){ 
+			@extend .col-md-3, .col-sm-3, .col-xs-10; 
+			@extend .col-ms-offset-0, .col-sm-offset-0, .col-xs-offset-2;
+			padding:0;
+			ng>span, >span{ @extend .ng-error; margin:5px;padding:3px;}
+		}
+	}
+}
+.submits {
+	text-align:right;
+	>input, >button{ @extend .btn;}
+	>input[type="submit"] {@extend .btn-primary;}
+	>input[type="reset"] {@extend .btn-default;}
+}
+.submit-group {
+	@extend .row; margin: 0 auto 10px;
+	>div { 
+		@extend .col-md-7, .col-sm-6, .col-xs-10;
+		@extend .col-md-offset-2, .col-sm-offset-3, .col-xs-2;
+		@extend .submits;
+	}
+}
+
+
+
 
 /* definition */
 $set1-prime: 	#007fff;
@@ -23,11 +70,14 @@ $footer-height:	50px;
 $canvas-aside-width: 85%;
 $canvas-content-width: 100%;
 $canvas-toggle-beg: -10px; $canvas-toggle-end: 10px;
+$alert-toggle-Y: -60px;
 /* menu color */
 $home-color:	#f00;		$home-color-h:	#e30;
 $mail-color:	#03f;		$mail-color-h: 	#00f;
 $friend-color:	#3c3;  		$friend-color-h: lime;
 $login-color:	#c3f;		$login-color-h:	#c0c;
+
+$aside-bkground: rgba(#464692, 0.85);
 
 @mixin glow-text-shadow($light-color, $dark-color) {
 	text-shadow:	
@@ -50,13 +100,12 @@ $login-color:	#c3f;		$login-color-h:	#c0c;
 }
 
 @mixin cell-color($bgcolor, $txtcolor, $side-color, $left-ratio, $right-ratio) {
-	>div {	top: 0;	width:100%; height:100%; }
+	>div {	top: 0;	width:100%;  }
 	>div:first-of-type {
 		@include background-gradient($side-color, $left-ratio, $right-ratio, $side-color);
 		border-radius: 0.3rem; 
 		color: $txtcolor; background-size: 100% 50%, 50% 100%;
 	}
-
 	>div:last-of-type	/* background colors and images */  {
 		left: 0px;	position:absolute;
 		-webkit-animation: composite 5s infinite alternate;
@@ -67,6 +116,14 @@ $login-color:	#c3f;		$login-color-h:	#c0c;
 @mixin menu-effect ($link, $hover, $shadow) {
 	a, a>i 		{	color: $link !important; }
 	a:hover, a:hover>i, a:active, a:active>i { color: $hover; @include glow-text-shadow($shadow, $hover)  } 
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }
 
 @mixin keyframes($animation-name ) {
@@ -85,11 +142,8 @@ $login-color:	#c3f;		$login-color-h:	#c0c;
 	animation: #{$str};
 }
 
-
-@mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
-  transition: $args;
+@mixin box-shadow($color) {
+	-webkit-box-shadow: 0 12px 30px $color;
+	box-shadow: 0 12px 30px $color;
 }
+

@@ -1,0 +1,37 @@
+<div class="canvas">
+	<div class="content"> <a class="canvas-toggle"><i></i></a>
+		<div class="user-info">
+			<div class="user-header">
+				<div ><img ng-src="{{users.j.vs.view.data.main.pack.avatar_url}}"/></div>
+				<div class="username"><h3>{{users.j.vs.view.data.main.pack.name}}</h3></div>
+			</div>
+			<hr class="gap10-20" />
+			<div> <div>Relation</div>
+				<div>{{content.relates(users.j.vs.view.data.main.pack.extra.relates)}}</div>
+			</div>
+			<div> <div>Login</div>
+				<div>{{users.j.vs.view.data.main.pack.login}}</div>
+			</div>
+			<div> <div>Nick</div>
+				<div>{{content.showValue('#',users.j.vs.view.data.main.pack.extra.nick) }}</div>
+			</div>
+			<div> <div>URL</div>
+				<div><a ng-href="/u/{{users.j.vs.view.data.main.pack.login}}">/u/{{users.j.vs.view.data.main.pack.login}}</a></div>
+			</div>
+		</div>
+	</div>
+
+	<aside>	<a class="canvas-toggle">x</a>
+		<div class="user-info">
+			<div> <div>URL</div> 
+				<div><a ng-href="/u/{{users.j.vs.view.data.main.pack.login}}">/u/{{users.j.vs.view.data.main.pack.login}}</a></div>
+			</div>
+			<div> <div>Email</div> 
+				<div>{{content.showValue('', users.j.vs.view.data.main.pack.email)}}</div>
+			</div>
+			<div> <div>Phone</div>
+				<div>{{content.showValue('', users.j.vs.view.data.main.pack.phone)}}</div>
+			</div>
+		</div>
+	</aside>
+</div>

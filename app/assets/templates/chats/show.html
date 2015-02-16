@@ -1,0 +1,41 @@
+<div class="main" ng-controller="chatsCtrl as chats">
+	<div class="extra span2">
+		<div><!-- cell content -->
+			<div class="canvas">
+
+				<div class="content"> <a class="canvas-toggle"><i></i></a>
+					<div><h2 >Reply Message </h2>
+						
+						<form class="form-horizontal" accept-charset="UTF-8"  method="post" name="chatForm" id="chatForm" ng-submit="chats.sendMsg($event, '/chats/'+chats.j.vs.view.data.main.chat.id, chatForm, 'patch')">
+							<div class="hidden"><input name="chat_id" type="hidden" value="{{chats.j.vs.view.data.main.chat.id}}" /></div>
+							<ng class="chatForm" chat-form></ng>
+						</form>
+					</div>
+				</div>
+
+				<aside> <a class="canvas-toggle">x</a> <div>
+					<ul class="chat-talkers" ng-class="{owner: chats.ownChat(chats.j.vs.view.data.main.chat.owner)}">
+						<li><label></label>Chat Group</label></li>
+						<li ng-repeat="tag in chats.j.vs.view.data.main.ids" title="remove user" ng-class="{selections: chats.ownChat(tag.id), cache: tag.cache }">
+							<div class="talker"> 
+								<div> <img class="avatar" ng-if="tag.avatar" ng-src="{{tag.avatar}}" title="{{tag.name}}" /> </div>
+								<div ng-click="chats.removeUser($index)">
+									<div ng-if="tag.tag[0]=='#'">{{tag.tag}}</div>
+									<div ng-if="tag.tag[0]!='#'">@{{tag.tag}}</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div> </aside>
+			</div>
+		</div>
+		<div></div>
+	</div>
+	<div class="extra span2">
+		<div> <div><side-menu></side-menu></div> </div>
+		<div></div>
+	</div>
+
+	<!-- pagination for chats -->
+	<ng pagination></ng>
+</div>

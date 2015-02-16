@@ -1,8 +1,12 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
-//@import "animate";
 @import "mixin";
+@import "flash";
+@import "form.error";
 @import "topbar";
 @import "layout";
+@import "side_menu";
 @import "canvas";
+@import "users";
+@import "chats"

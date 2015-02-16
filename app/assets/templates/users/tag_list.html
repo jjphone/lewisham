@@ -1,0 +1,26 @@
+<div class="cell" ng-repeat="tag in content.j.vs.view.data.paginate.pack" >
+	<div>
+		<div class="tag-list" ng-attr-id="paginate_{{tag.id}}">
+			<a ng-href="/users/{{tag.id}}">
+				<div>
+					<div><h4 class="tag-name" ng-bind-html="content.highlight( [3], tag.type, tag.name, tag.pos) "></h4>
+					</div>
+
+					<div class="user-details">
+						<div> 
+							<div>
+								<i class="glyphicon glyphicon-tag" title ="tag"></i>
+							</div> 
+
+							<div>
+								<div ng-bind-html="content.highlight([1,2], tag.type, tag.tag, tag.pos) "></div>	
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</a>
+		</div>
+
+	</div>
+<div></div> </div>

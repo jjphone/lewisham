@@ -20,4 +20,14 @@
 //= require angular-animate
 //= require ng-rails-csrf
 //= require angular-sanitize
-//= require site
+//= require angular/services/factories
+//= require angular/controllers/content
+//= require angular/controllers/users
+//= require angular/controllers/chats
+//= require angular/directives/render-directives
+//= require angular/directives/fun-directives
+//= require angular/site
+
+
+
+

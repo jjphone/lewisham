@@ -3,62 +3,81 @@ body{
 	>div.container{	background: #fefefe; padding: 0 30px 30px;}
 }
 
-
-
-
-
-div.main>div:not(.span2){ @extend .col-xs-6, .col-sm-4, .col-md-3; }
-div.main>div.span2{ //@extend .lime;
-		@extend .col-xs-12, .col-sm-12, .col-md-6;
+.error-status{
+	font-size: 2em; color:red; margin: 0 1rem;
 }
-
-
-div.main{ //@extend .red;
-	@extend .row;
-	padding-bottom: 20px;
-	>div, div>div { width:100%; height: $cell-height; padding:0!important;}
-	>div{ //cell
-		@extend .lime;
-		overflow: hidden;
-		position: relative; 
-		border-top: 1px outset $cell-border; border-left: 1px solid $cell-border;
-		@include cell-color(#fefefe, #333, #ccc, transparent 35%, transparent 75% );
-		padding: 0;
+img.avatar{
+	border: 1px solid #666; border-radius: 50%;
+}
+.cell {
+	padding:0!important;
+	position:relative; overflow:hidden;
+	border-top: 1px outset $cell-border; border-left: 1px solid $cell-border;
+	@include cell-color(#fefefe, #333, #ccc, transparent 35%, transparent 75% );
+	@include box-shadow(darkgray);
 		
-		background:aqua;
+	/* general padding apply to all cells, except canvas. it needs have 0 gap */		
+	>div:nth-child(1)>div:not(.canvas) { padding: 5px 10px; margin:0; }
 
-		//div.cell-content>div.canvas>div.content
-		>div>div>div, >div>div>aside {
-			padding: 5px 10px !important;
-			color: red;
-		} 
+	/*For canvas, padding is applied to canvas>.content and canvas>aside */
+	//div.cell-content>div.canvas>div.content
+	>div div.canvas>div, >div div.canvas>aside { padding: 5px 10px 5px !important; }
+}
+
+.scroll-page{
+	@extend .col-xs-12;	@extend .dark-bg;
+	height: 60px; opacity: 0.8; padding: 20px;
+	font-size: 2rem;color:#eee; text-align:center; 
+}
+
+%blocks { 
+	@extend .row; padding-bottom: 20px;
+	>div{ @extend .cell; }
+}
+
+div.main>div:not(.extra), .cell:not(.extra){@extend .col-xs-6, .col-sm-4, .col-md-3; }
+div.main>div.span2, .cell.span2 { @extend .col-xs-12, .col-sm-12, .col-md-6;}
+
+div.main{ 
+	@extend %blocks;
+	>div, >div>div,
+	.cell:not(.extra), .cell:not(.extra)>div { height: $cell-height;}
+	>div, .cell { //cell
+		&:hover{background:DarkOrange; }
 	}
-	
+}
+
+.cell.span-full{ @extend .col-xs-12;}
 
 
-
+div.form{ @extend %blocks; }
+div.form>div{
+	@extend .col-md-6, .col-sm-8, .col-xs-12;
+	@extend .col-md-offset-3, .col-sm-offset-2;
 }
 
 
-div.form{;}
 
 /* x-small > 768px  */
-@media (max-width: $screen-xs-max) { 
-	
+@media (max-width: $screen-xs-max) {
+	div.main>div, div.form>div, .cell {background:PowderBlue;} 
+	img.avatar{	width:25px; height:25px;}
+	div.user-header>div:nth-child(1)>img{width:40px; height:40px;}
+	div.username>h3{font-size:1.8rem;}
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
-	
+	div.main>div, div.form>div, .cell {background: LightSteelBlue; } 
+	img.avatar{	width:30px; height:30px;}
+	div.user-header>div:nth-child(1)>img{width:50px; height:50px;}
+	div.username>h3{font-size:2rem;}
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: $screen-md-min) { 
-	//body>div.container {padding:0 20px 20px;} 
+	div.main>div, div.form>div, .cell {background: LightBlue; }
+	img.avatar{	width:40px; height:40px;}
+	div.user-header>div:nth-child(1)>img{width:60px; height:60px;}
+	div.username>h3{font-size:2.2rem;}
 }
 
-.test {
-	background: #111;
-	-ms-transform: translateX(-1*$canvas-aside-width);
-	-webkit-transform: translateX(-1*$canvas-aside-width);
-	transform: translateX(-1*$canvas-aside-width);
-}

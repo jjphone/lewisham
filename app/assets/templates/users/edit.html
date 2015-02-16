@@ -1,0 +1,27 @@
+<div class="form" ng-controller="usersCtrl as users">
+	<div class="extra">
+		<div class="cell-content">
+			<div>
+				<h2>Update Profile</h2>
+				<form class="form-horizontal" accept-charset="UTF-8" enctype="multipart/form-data" method="patch" action="{{users.user_paths(users.j.vs.view.data.main.pack.id, 'update')}}" name="profile" action="{{users.}}" ng-submit="users.submitForm($event, users.user_paths(users.j.vs.view.data.main.pack.id, 'update'), profile, 'patch')" >
+
+					<div class="hidden">
+						<input name="utf8" type="hidden" value="&#x2713;" />
+						<input name="_method" type="hidden" value="patch" />
+						<input name="authenticity_token" type="hidden" value="{{content.j.vs.token}}" />
+					</div>
+
+					<ng class="fields" user-fields></ng>
+
+					<div class="submit-group">
+				 		<div>
+							<input name="commit" type="submit" value="Update" />
+							<button type="reset" >Reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div></div>
+	</div>
+</div>

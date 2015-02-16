@@ -28,9 +28,11 @@
 <li class="setting" title="setting">
 	<a data-toggle="dropdown" role="button" aria-expanded="false"> <span>Setting pages</span> <i/> <i/> </a>
 	<ul class="dropdown-menu" role="menu">
-		<li><a ng-href="/">Profile</a></li>
+		<li><a ng-href="/users/{{content.j.vs.view.current_user.id}}">{{content.j.vs.view.current_user.login}}</a></li>
+		<li class="divider"></li>
+		<li><a ng-href="/users/{{content.j.vs.view.current_user.id}}/edit">Profile</a></li>
 		<li><a ng-href="/">Setting</a></li>
 		<li class="divider"></li>
-		<li><a ng-href="/">Logout</a></li>
+		<li><a ng-href="/signout" ng-method="delete">Logout</a></li>
 	</ul>
 </li>

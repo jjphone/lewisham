@@ -1,0 +1,17 @@
+<div ng-show="content.j.vs.view.flash"> <!-- row--> <div> <!-- cell -->
+	<!-- Try to avoid use ng-repeat, as there is only 3 types of flash -->
+
+	<div ng-if="content.j.vs.view.flash.error" class="error"> 
+		<a dismiss="error">x</a>
+		<h5>Error</h5> <p>{{content.j.vs.view.flash.error}}</p>
+	</div>
+	<div ng-if="content.j.vs.view.flash.info" class="info">
+		<a dismiss="info">x</a>
+		<h5>Info</h5> <p>{{content.j.vs.view.flash.info}}</p>
+	</div>
+	<div ng-if="content.j.vs.view.flash.success" class="success">
+		<a dismiss="success">x</a>
+		<h5>Success</h5> <p>{{content.j.vs.view.flash.success}}</p>
+	</div>
+
+</div> </div>

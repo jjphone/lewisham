@@ -1,0 +1,29 @@
+<div class="cell" ng-repeat="user in content.j.vs.view.data.paginate.pack" >
+	<div> 
+		<div class="user-list" ng-attr-id="paginate_{{user.id}}">
+			<a ng-href="/users/{{user.id}}">
+				<div>
+					<ng class="user-title" avatar="{{user.avatar_url}}" name="{{user.name}}"> </ng>
+					<div class="user-details">
+						<div> <div title="login" class="u-login">@<span>login</span></div> 
+							<div>{{user.login}}</div>
+						</div>
+						<div> <div title="alias" class="u-nick">#<span>alias-nick</span></div>
+							<div>{{content.showValue('#',user.extra.nick)}} </div>
+						</div>
+						<div> <div title="email" class="u-email"><span>email</span><i></i></div>
+							<div>{{content.showValue('',user.email)}}</div>
+						</div>
+						<div> <div title="phone" class="u-phone"><span>phone</span><i></i></div>
+							<div>{{content.showValue('',user.phone)}}</div>
+						</div>
+						<div> <div title="relates" class="u-relate"><span>relation</span><i></i></div>
+							<div>{{content.relates(user.extra.relates)}}</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div> 
+	</div>
+
+<div></div> </div> 

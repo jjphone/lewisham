@@ -1,0 +1,60 @@
+<!-- view.data.main = {type: 'search', 
+	talkers, 
+	ids: [{id:user.id, tag: user.tag}, .... ]
+	pack: {type: 'user', term, result: [ {id, name, pos, tag, type }, ... ],
+	message } }
+-->
+
+
+<div class="hidden">
+	<input name="utf8" type="hidden" value="&#x2713;" />
+	<input name="authenticity_token" type="hidden" value="{{content.j.vs.token}}" />
+</div>
+
+<div> <div>	<div class="add-users">
+	<label id="add-users-label"> <span>add users</span> <i></i> <i></i>	</label>
+	<input id="to" type="text" aria-describedby="add-users-label" ng-model="chats.j.vs.view.data.main.talkers" ng-change="chats.userLookup('tags')" />
+
+	<ul class="autocomplete to" ng-if="chats.j.vs.view.data.main.type=='tags'"  ng-cloak>
+		<li ng-repeat="tag in chats.j.vs.view.data.main.pack.search.pack | limitTo: 5" ng-click="chats.addUser(tag)" >
+			<div ng-bind-html="content.highlight([1,2], tag.type, tag.tag, tag.pos)"></div>
+			<span ng-bind-html="content.highlight([3], tag.type, tag.name, tag.pos)"></span>
+		</li>
+		
+		<li class="not-hint" ng-if="chats.j.vs.view.data.main.pack.search.pack.length<1" >No match found on '{{chats.j.vs.view.data.main.pack.search.term}}'</li>
+	</ul>
+</div> </div> </div>
+
+<div id="toID">	<div> 
+
+	<div class="cache" ng-if="chats.j.vs.view.data.main.modify">Hit Send to update</div>
+	<ul>
+		<li ng-repeat="user in chats.j.vs.view.data.main.ids" ng-click="chats.removeUser($index)" >
+		{{user.tag}}<a>x</a>
+		</li>
+	</ul> 
+</div> </div>
+
+<div> <div>
+	<textarea id="message" name="message" ng-model="chats.j.vs.view.data.main.message"
+	ng-maxlength="100" ></textarea>
+</div> </div>
+
+
+
+<div>
+	<div class="submits" >
+		<hr class="gap10-20" />
+		<div class="chat-txt-count">
+			<div ng-hide="chatForm.message.$error.maxlength">
+				msg counts : <span>{{chats.j.vs.view.data.main.message.length}}</span>		
+			</div>
+			<div ng-show="chatForm.message.$error.maxlength" class="ng-error">max 100 chars</div>
+		</div>
+		
+		<input name="commit" type="submit" value="Send" />
+		<button type="reset" >Reset</button>
+
+	</div>
+</div>
+

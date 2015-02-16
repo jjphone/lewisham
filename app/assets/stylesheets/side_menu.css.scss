@@ -1,0 +1,28 @@
+div.sideMenu {
+	@extend .row; @extend .no-gap;
+	>div { 
+		@extend .col-xs-4;
+		padding: 5px; height: ($cell-height - 10px);
+	}
+}
+
+div.sideMenu div.menu {
+	margin:5px; padding:5px 0;
+	width: 100%; height: ($cell-height - 30px);
+	border-radius: 5px;
+	&:hover{ background: rgba(#555, 0.7);
+		@include box-shadow(#FFE090);
+	}
+	>h5 { font-size: 2rem; color: #111; margin-left:10px;}
+	>div{ margin: 3px 0;
+		>div{ @extend .no-gap;}
+		>div>a {
+			padding: 8px 10px; display: block; 
+			font-size:1.5rem; text-decoration: none;
+		}
+	}
+}
+div.menu:not(.pagination)>div:hover { @extend .dark-bg; }
+div.menu.pagination:hover>span { color: #eee; }
+div.pagination.menu>span, div.pagination-buttons{ display:block; padding:10px 20px; margin-top:10px;}
+div.pagination-buttons>a { @extend .btn, .btn-success; margin: 2px;}

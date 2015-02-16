@@ -1,0 +1,5 @@
+<ng ng-if="content.paginate_empty()" ng-include="'/assets/layouts/no_record.html'" ng-cloak> </ng>
+<ng ng-if="!content.paginate_empty()" ng-include="content.paginate_template(content.j.vs.view.data.paginate.type)" ng-cloak> </ng>
+<ng ng-show="content.paginate_has_more()" scrolling>
+	<div class="scroll-page"><a ng-click="content.paginate_page(content.j.vs.view.data.paginate.page+1)">Loading more records</a></div>
+</ng>

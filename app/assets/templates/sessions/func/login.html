@@ -1,0 +1,45 @@
+<form accept-charset="UTF-8" method="post" name="login" id="login" class="form-horizontal fields" ng-submit="content.postForm($event, '/sessions', sessions.data, login, 'post')" >
+	<div class="hidden">
+		<input name="utf8" type="hidden" ng-value="String.fromCharCode('0x2713');" ng-model="sessions.data.utf8" />
+		<input name="authenticity_token" type="hidden" value="{{content.j.vs.token}}" ng-model= "sessions.data.authenticity_token" />
+	</div>
+
+	<div>
+		<div><label for="email" ng-click="console.log('login = ')">Email</label></div>
+		<div>
+			<input id="email" name="session[email]" type="email" 
+				ng-model="sessions.data.email" 
+				ng-minlength="6" ng-maxlength="100" ng-pattern="/^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i"	required />
+		</div>
+		<div>
+			<span class="ng-errors" ng-show="content.formSubmit && login['session[email]'].$error.minlength">min 6 chars require</span>
+			<span class="ng-errors" ng-show="content.formSubmit && login['session[email]'].$error.maxlength">max 100 chars</span>
+			<span class="ng-errors" ng-show="content.formSubmit && login['session[email]'].$error.pattern">Invalid email pattern</span>
+			<span class="ng-error" ng-show="content.formSubmit && login['session[email]'].$error.required">Required</span>
+		</div>
+	</div>
+	<div>
+		<div><label for="password">Password</label></div>
+		<div>
+			<input id="password" name="session[password]" type="password"
+				ng-model="sessions.data.password" 
+				ng-minlength="6" ng-maxlength="100" required />
+		</div>
+		<div>
+			<span class="ng-errors" ng-show="content.formSubmit && login['session[password]'].$error.minlength">min 6 chars require</span>
+			<span class="ng-errors" ng-show="content.formSubmit && login['session[password]'].$error.maxlength">max 100 chars</span>
+			<span class="ng-error" ng-show="content.formSubmit && login['session[password]'].$error.required">Required</span>
+		</div>
+	</div>
+
+
+	<hr class="submit" />
+
+	<div class="submit-group">
+ 		<div>
+			<input name="commit" type="submit" value="Login"  />
+			<button type="reset" >Reset</button>
+		</div>
+	</div>
+
+</form>

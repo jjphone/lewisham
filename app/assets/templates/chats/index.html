@@ -1,0 +1,31 @@
+<div class="main" ng-controller="chatsCtrl as chats">
+	<div class="extra span2">
+		<div><!-- cell content -->
+			<div class="canvas">
+
+				<div class="content"> <a class="canvas-toggle"><i></i></a>
+					<div><h2>New Message</h2>
+						<form class="form-horizontal" accept-charset="UTF-8"  method="post" name="chatForm" id="chatForm" ng-submit="chats.sendMsg($event, '/chats', chatForm, 'post')">
+							<ng class="chatForm" chat-form></ng>
+						</form>
+					</div>
+				</div>
+
+				<aside> <a class="canvas-toggle">x</a> <div>
+					<ul class="reply-links">
+						<li><label>Reply to</label></li>
+						<li ng-repeat="talk in chats.j.vs.view.data.paginate.pack">	<ng reply="talk"></ng> </li>
+					</ul>
+				</div> </aside>
+			</div>
+		</div>
+		<div></div>
+	</div>
+	<div class="extra span2">
+		<div> <div><side-menu></side-menu></div> </div>
+		<div></div>
+	</div>
+
+	<!-- pagination for chats -->
+	<ng pagination></ng>
+</div>

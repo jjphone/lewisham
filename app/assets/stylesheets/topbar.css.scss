@@ -2,38 +2,43 @@
 
 nav.topbar {
 	@extend .navbar, .navbar-inverse, .navbar-fixed-top;
-	@include transparent-ratio(80);
+	@include transparent-ratio(85);
 	background-color: #333;
 	min-height:0; margin-bottom:10px;
-	>div{ @extend .container-fluid, no-gap;
-		>div:nth-child(1){ 
-			@extend .navbar-header;
-			>button{ @extend .navbar-toggle, .collapsed; @extend %src; >i {@extend .icon-bar;} }
-			>a {@extend .navbar-brand;}
-		}
+	font-weight: bold;
+}
+nav.topbar>div{ @extend .container-fluid, no-gap;}
 
-		>div:nth-child(2){ //navbar-collapse
-			@extend .collapse, .navbar-collapse;
-			>ul{
-				@extend .nav, .navbar-nav, .navbar-right;
-				>li{ @extend .dropdown; 
-					>a {  @extend .dropdown-toggle; @extend %src; }
-					>a>i:nth-of-type(1){ @extend .glyphicon;}
-					>a>i:nth-of-type(2){ @extend .caret;}
-					>ul{ @include transparent-ratio(90);
-						background: #333; 
-						a { color: #ccc; &:hover{ background: #111;} }
-					}
-				}
-			}
-			li.home>a>i:nth-of-type(1) { @extend .glyphicon-home; }
-			li.login>a>i:nth-of-type(1) { @extend .glyphicon-off; }
-			li.mail>a>i:nth-of-type(1) { @extend .glyphicon-envelope; }
-			li.friend>a>i:nth-of-type(1) { @extend .glyphicon-user; }
-			li.setting>a>i:nth-of-type(1) { @extend .glyphicon-wrench; }
-		}
+/* nav.topbar>div>div:nth-child(1){  */
+div.navbar-header{	
+	>button{ @extend .navbar-toggle, .collapsed; @extend %src; >i {@extend .icon-bar;} }
+	>a {	@extend .navbar-brand;
+		>sup{ vertical-align: super; font-style:italic;color:red;}
 	}
 }
+
+div#topbar-options{ //navbar-collapse
+	@extend .collapse, .navbar-collapse;
+	>ul{
+		@extend .nav, .navbar-nav, .navbar-right;
+		>li{ @extend .dropdown; 
+			>a {  @extend .dropdown-toggle; @extend %src; }
+			>a>i:nth-of-type(1){ @extend .glyphicon;}
+			>a>i:nth-of-type(2){ @extend .caret;}
+			>ul{ @include transparent-ratio(90);
+				background: #333; 
+				a { color: #ccc; font-weight:bold; &:hover{ background: #111;} }
+			}
+		}
+	}
+	li.home>a>i:nth-of-type(1) { @extend .glyphicon-home; }
+	li.login>a>i:nth-of-type(1) { @extend .glyphicon-off; }
+	li.mail>a>i:nth-of-type(1) { @extend .glyphicon-envelope; }
+	li.friend>a>i:nth-of-type(1) { @extend .glyphicon-user; }
+	li.setting>a>i:nth-of-type(1) { @extend .glyphicon-wrench; }
+}
+	
+
 
 .home 	{ @include menu-effect($home-color-h, $home-color, white);  }
 .mail 	{ @include menu-effect($mail-color-h, $mail-color, white); }

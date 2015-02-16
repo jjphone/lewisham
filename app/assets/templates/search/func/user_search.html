@@ -1,0 +1,51 @@
+<form accept-charset="UTF-8" name="search" id="search" method="get" class="form-horizontal fields" ng-submit="users.searchForm($event, '/search', users.j.vs.view.data.main.pack.search, search)" >
+
+	<div class="hidden">
+		<input name="utf8" type="hidden" ng-model="users.j.vs.view.data.main.pack.search.utf8" value="&#x2713;" />
+	</div>
+	Search = {{users.j.vs.view.data.main.pack.search}}
+	<div>
+		<div><label for="term">Phrase</label></div>
+		<div><input id="term" name="term" type="text" ng-model="users.j.vs.view.data.main.pack.search.term" ng-minlength="3" ng-required="!(users.j.vs.view.data.main.pack.search.term||users.j.vs.view.data.main.pack.search.email||users.j.vs.view.data.main.pack.search.phone)" /></div>
+		<div>
+			<span ng-show="users.errorField( search,'term', 'minlength')">min 3 chars</span>
+			<span ng-show="users.errorField( search,'term', 'required')">search can't be blank</span>
+		</div>
+	</div>
+
+	<div>
+		<div><label for="email">Email</label></div>
+		<div><input id="email" name="email" type="text" ng-model="users.j.vs.view.data.main.pack.search.email" ng-minlength="6"/></div>
+		<div><span ng-show="users.errorField( search,'email', 'minlength')">min 6 chars</span></div>
+	</div>
+
+	<div>
+		<div><label for="phone">Phone</label></div>
+		<div><input id="phone" name="phone" type="text" ng-model="users.j.vs.view.data.main.pack.search.phone" ng-minlength="6"/> </div>
+		<div><span ng-show="users.errorField( search,'phone', 'minlength')">min 6 chars</span></div>
+	</div>
+	<div>
+		<div><label for="type">Output</label></div>
+		<div>
+			<label class="search-tag ">
+				<span>Tags</span>
+  				<input type="radio" name="type" id="typeTags" ng-model="users.j.vs.view.data.main.pack.search.type" value="tags" />
+  				<i title="tag"></i>
+  			</label>
+
+			<label class="search-user">
+				<span>Users</span>
+  				<input type="radio" name="type" id="typeUsers" ng-model="users.j.vs.view.data.main.pack.search.type" value="user" />
+  				<i title="user"></i>
+  			</label>
+		</div>
+	</div>
+	<hr class="gap10-20" />
+	<div class="submit-group">
+ 		<div>
+			<input name="commit" type="submit" value="Search" />
+			<button type="reset" >Reset</button>
+		</div>
+	</div>
+
+</form>

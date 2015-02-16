@@ -1,0 +1,164 @@
+ng.chatForm>div{
+	@extend row;
+	>div { @extend .col-xs-11;}
+}
+div.add-users{
+	@extend .input-group;
+	>label{ @extend .input-group-addon, %src; 
+		>i {@extend .glyphicon;}
+		>i:nth-child(2) { @extend .glyphicon-plus;}
+		>i:nth-child(3) { @extend .glyphicon-user;}
+	}
+	>input {@extend .form-control;}
+}
+
+
+ul.autocomplete{
+	margin: 3px 0 0; padding:0;
+	
+	width: calc(100% - 58px); // add user icon has 58px width
+	//border: 1px solid #999;
+	list-style: none; color: $set1-light-B;
+	position: absolute; z-index: 2; top:3rem;
+	>li { 
+		margin: 0; padding: 3px 5px 2px; border-top: 1px solid #ddd;
+		display:block; background: #555; opacity: 0.85;
+		cursor: pointer;
+		>div{ color: #fefefe;}
+		b { color: lighten(orange, 20%); }
+	}
+	>li:hover{		background: black;
+	}
+	>li.not-hint {color: #aaa; padding: 8px 5px;}
+}
+
+.chat_tag{
+	@extend .label, .label-primary; display:inline-block;
+	>a { color: #aaa; margin:2px 2px 2px 5px; vertical-align: super;}
+}
+.chat_tag:hover>a, .chat_tag>a:hover{color:#fefefe;}
+
+div#toID>div>ul{
+	@extend .zero-v-gap; max-height: 6rem;
+	>li{ @extend .chat_tag;
+		cursor: pointer; margin: 6px 0 2px 5px; padding: 3px 2px 5px 5px;
+	}
+}
+
+textarea#message{ width:100%;resize: none; height: 60px;}
+div.chat-txt-count {float:left; display: inline-block;}
+div.cache{ @extend .label, .label-warning;
+	position: absolute; right:-10%; bottom:3px;
+}
+
+.user-icon-login{
+	@extend .row; margin:0;
+	>div{ height:45px;}
+	>div:nth-child(1){ @extend .col-xs-3; }
+	>div:nth-child(2){ @extend .col-xs-9;
+		line-height: 40px; vertical-align:middle;
+	}
+}
+
+
+ul.reply-links{
+	list-style: none; padding-left: 15px;
+	>li {margin: 10px 0;}
+	>li>ng>a>div {@extend .row; padding: 5px 0;}
+	>li>ng>a>div:hover { background: #333;}
+	>li>ng>a>div>div:nth-child(1) {@extend .col-xs-1;}
+	>li>ng>a>div>div:nth-child(1)>div {@extend .badge; background: DarkOrange;}
+	>li>ng>a>div>div:nth-child(2) {@extend .col-xs-11;}
+	div.chat_tag{ margin: 3px 5px;}
+}
+
+ul.chat-talkers{
+	list-style: none; padding:0;margin: 2px -8px;
+	>li:nth-child(1){ text-align:center;}
+	>li>div.talker { @extend .user-icon-login;}
+}
+
+.selections{
+	cursor:pointer;
+	&:hover{background: #111; opacity: 0.8;}
+}
+
+ul.chat-talkers.owner>li:not(:first-child){	@extend .selections;}
+ul.chat-talkers>li.cache{ background: lighten($aside-bkground, 20%); }
+
+div.chat-summary{
+	>ul{list-style: none; padding:5px 0; height: 60px; overflow: hidden;}
+	>ul>li{@extend .chat_tag; margin: 6px 0 2px 5px; padding: 3px 2px 5px 5px; }
+}
+
+div.msg{
+	>div {@extend .row; margin:0;}
+}
+
+%msg-content{
+	background: #eee; opacity:0.6; 
+	border: 1px solid #888; border-radius: 10px;
+}
+
+div.msg.item{
+	>div{padding: 10px;}
+	>div.sender	{ @extend .col-xs-2;
+		text-align: center; overflow: hidden;
+	}
+	>div.content{ @extend .col-xs-8;
+		@extend %msg-content; margin-top:10px;
+	}
+	>div.time	{ @extend .col-xs-1;
+		span.sent, span.new{display:none;}
+	}
+}
+div.msg.item.own{
+	>div:not(.sender) {text-align:right}
+	>div.time {@extend .col-xs-pull-10;}
+	>div.content{@extend .col-xs-pull-1;}
+	>div.sender{@extend .col-xs-push-9;}
+}
+
+
+div.msg.summary {
+	>div.sender { @extend .user-icon-login;}
+	>div.content{ margin:0;	height: 180px; }
+	>div.content>div{@extend .col-xs-12; margin:0; }
+	>div.content.new {	@extend %msg-content;
+		>div{color: #111;}
+	}
+
+	>div.time>div{
+		@extend .col-xs-12; opacity:0;
+		position:absolute; z-index:2;
+		bottom: 2px; left:0; height: 30px; 
+		line-height: 18px; text-align: right;
+		padding-top:5px;
+	}
+
+	>div.time>div:hover {
+		background: #333; opacity:0.8; color: #ccc;
+		>span{ color: #aaa;}
+		>span.new{ color: orange; font-weight: bold; float: left;
+			>i {@extend .glyphicon, .glyphicon-envelope;}
+		}
+	}
+}
+
+ul.aside-select{
+	list-style: none; margin: 30px -10px 0; padding: 0;
+	>li { margin: 5px 0; padding: 10px 15px;
+		>a {text-decoration: none; }
+	}
+	>li:hover{ background: #333;opacity:0.8;
+		>a {color: #eee;}
+	}
+}
+
+div.msg-cell{
+	padding:0!important;
+	position:relative; overflow:hidden;
+	border-top: 1px outset $cell-border; border-left: 1px solid $cell-border;
+	@include cell-color(#fefefe, #333, #ccc, transparent 35%, transparent 75% );
+	@include box-shadow(darkgray);
+}

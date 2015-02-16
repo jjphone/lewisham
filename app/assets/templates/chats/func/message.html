@@ -1,0 +1,15 @@
+<div class="sender"> 
+	<div> <img class="avatar" ng-src="{{msg.avatar}}" title="@{{msg.login}}"/> </div>
+	<div>@{{msg.login}}</div>
+</div>
+
+<div class= "content" ng-class="{new: !read }">
+	<div>{{msg.content}}</div> 
+	<div ng-bind-html="msg.html"></div>
+</div>
+
+<div class="time"> <div> 
+	<span class="new" ng-if="!read"> <i></i> New</span> 
+	<span class="sent"> sent at </span> 
+	<span class="time">{{msg.updated_at}}</span>
+</div> </div>

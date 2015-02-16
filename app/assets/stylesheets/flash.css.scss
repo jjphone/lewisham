@@ -1,0 +1,30 @@
+flash{ @extend .container-fluid; @extend .no-gap; 
+	>div { @extend .row; }
+	>div>div { //@extend .blue;  //cell
+		@extend .col-md-4, .col-sm-6, .col-xs-9;
+		@extend .col-md-offset-8, .col-sm-offset-6, .col-xs-offset-3;
+		position: fixed; z-index: 9; top:65px;
+ 		>div { @extend .label; //@extend .red;
+ 			opacity: 0.9;
+ 			display:block; margin-top: 10px; 
+ 			>a { @extend .close; }
+ 			>h5, >p {text-align: left;}
+ 			>p {font-size: 1.5rem; font-weight: normal;}
+ 			>h5{ text-transform:capitalize; }
+ 		}
+ 		>div.error{	@extend .label-warning; >p { color: lighten($brand-warning, 25%) } }
+ 		>div.success{@extend .label-success; >p { color: lighten($brand-success, 25%) } }
+ 		>div.info{@extend .label-info; >p { color: lighten($brand-info, 25%) } }
+	}
+}
+@include keyframes('fadeInUp') {
+	0%	{opacity: 0.2; transform: translateY($alert-toggle-Y); }
+	100%{opacity: 0.9; transform: translateY(0); }
+}
+
+@include keyframes('fadeOutUp') {
+	0%	{opacity: 0.8; transform: translateY(0); }
+	100%{opacity: 0.2; transform: translateY($alert-toggle-Y); }
+}
+flash>div>div>div.ng-enter, flash>div>div>div:not(.ng-leave) { @include animation('fadeInUp 1s'); }
+flash>div>div>div.ng-leave{ @include animation('fadeOutUp 1.5s');}

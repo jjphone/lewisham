@@ -1,0 +1,17 @@
+.fields>div:not(.submit-group)>div:nth-child(3) span.ng-hide{ opacity:0; display:none!important; }
+.fields>div:not(.submit-group)>div:nth-child(3) span.ng-show { opacity:1!important;}
+.fields>div:not(.submit-group)>div:nth-child(3) span.ng-hide-remove { @include animation('fadeInUp 1.5s'); }
+.fields>div:not(.submit-group)>div:nth-child(3) span.ng-hide-add { @include animation('fadeOutUp 1.5s'); }
+
+@media (max-width: $screen-xs-max) {
+	.fields>div:not(.submit-group)>div:nth-child(3) span.ng-show { display:inline;}
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+	.fields>div:not(.submit-group)>div:nth-child(3) span.ng-show { display:list-item;}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) { 
+	.fields>div:not(.submit-group)>div:nth-child(3) span.ng-show { display:list-item;}	
+}

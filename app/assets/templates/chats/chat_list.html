@@ -1,0 +1,25 @@
+<div class="cell" ng-repeat="chat in content.j.vs.view.data.paginate.pack" >
+	<div ng-attr-id="paginate_{{chat.id}}"> <!-- cell-content -->
+
+		<div class="canvas">
+			<div class="chat-summary"> <a class="canvas-toggle"><i></i></a>
+				<ul> <li ng-repeat="tag in chat.display.split(',')">{{tag}}</li> </ul>
+				<hr class="gap10-20">
+				<a ng-href="/chats/{{chat.id}}"> 
+					<div class="msg summary" ng-if="chat.extra.message"  msg='chat.extra.message' read="chat.extra.read"></div>
+					<div class="msg summary" ng-if="!chat.extra.message">No message yet</div>
+				</a>
+			</div>
+
+			<aside> <a class="canvas-toggle">x</a> <div>
+				<ul class="aside-select">
+					<li ng-hide="chat.extra.read"><a href="#" ng-click="chats.markRead(chat.id, chat.extra.message.id)">Mark as Read</a></li>
+					<li ng-if="chats.j.vs.view.current_user.id == chat.user"><a ng-href="{{chats.list_path(chat.id)}}" ng-method="delete">Close All Chats</a></li>
+					<li ng-if="chats.j.vs.view.current_user.id != chat.user"><a ng-href="{{chats.list_path(chat.id)}}" ng-method="delete">Quit Chat</a></li>
+				</ul>
+			</div> </aside>
+		</div>
+
+	</div>
+
+<div></div> </div> 

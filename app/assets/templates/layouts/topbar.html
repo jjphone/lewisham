@@ -4,11 +4,11 @@
 	<button type="button" data-toggle="collapse" data-target="#topbar-options">
 		<span>Menu navigation</span> <i /> <i /> <i />
 	</button>
-	<a href="/">Trainbuddy</a>
+	<a href="/">Trainbuddy <sup> - {{content.j.vs.view.source}}</sup></a>
 </div>
 
 <div id="topbar-options">
-	<ul user-menu />
+	<ul ng-if="content.j.vs.view.current_user" user-menu> </ul>
 	<ul>
 		<li class="home" title="home">
 			<a data-toggle="dropdown" role="button" aria-expanded="false"> <span>Home pages</span> <i/> <i/> </a>

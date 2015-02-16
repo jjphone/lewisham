@@ -1,0 +1,61 @@
+.user-title>div { 
+	@extend .row;
+	>div:nth-child(1) { @extend .col-xs-3; }
+	>div:nth-child(2) { @extend .col-xs-9;
+		>h6 {font-size: 1.5rem;}
+	}
+}
+
+div.user-list { 
+	height: ($cell-height - 10px); 
+	>a>div{height:100%;}
+}
+div.user-details {
+	>div {@extend row; }
+	>div:not(:last-of-type){margin-bottom:20px;}
+	>div>div:nth-child(1){
+		@extend .col-xs-3; @extend %src;
+		i { @extend .glyphicon; }
+	}
+	>div>div:nth-child(2){
+		@extend .col-xs-9;
+		color: #666; font-size: 1.6rem;
+	}
+}
+
+div.post-content{
+	height:250px; position:relative;
+	>div.post-date{
+		position: absolute; bottom:10px; right: 10px;
+	}
+}
+
+.user-info{
+	>div {@extend .row;}
+	>div:not(.user-header)>div:nth-child(1){ @extend .col-xs-3;}
+	>div:not(.user-header)>div:nth-child(2){ @extend .col-xs-9;}
+}
+
+
+div.user-header {
+	>div:nth-child(1){
+		@extend .col-xs-3, .col-sm-2;
+		>img { @extend img.avatar; /* image size at layout.scss media query*/}
+	}
+	div:nth-child(2){  @extend .col-xs-9, .col-sm-10; }
+}
+
+div.u-email>i{ @extend .glyphicon-envelope;}
+div.u-phone>i{ @extend .glyphicon-earphone;}
+div.u-relate>i{ @extend .glyphicon-user;}
+
+label.search-tag,label.search-user {
+	@extend .radio-inline, %src;
+	&:not(:last-child){margin-right:1.2rem;}
+	&:not(:first-child){margin-left:1.2rem;}
+	>i{@extend .glyphicon;}
+}
+label.search-tag>i{@extend .glyphicon-tag;}
+label.search-user>i{@extend .glyphicon-user;}
+h4.tag-name{ text-align:center;}
+

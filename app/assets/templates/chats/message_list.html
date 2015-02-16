@@ -1,0 +1,16 @@
+<div class="cell extra span-full" ng-repeat="msg in content.j.vs.view.data.paginate.pack" >
+	<div class="msg-list" ng-attr-id="paginate_{{msg.id}}"> <!-- cell-content -->
+
+		<div class="canvas">
+			<div class="msg"> <a class="canvas-toggle" ng-if="chats.ownChat(msg.user)" ><i></i></a>
+				<div class="msg item" ng-class="{own: chats.ownChat(msg.user)}" msg="msg" read="true" ></div>
+			</div>
+
+			<aside ng-if="chats.ownChat(msg.user)"> <a class="canvas-toggle">x</a> <div> <ul class="aside-select">
+				<li><a ng-href="/messages/{{msg.id}}" ng-method="delete">remove message</a></li>
+			</ul> </div> </aside>
+		</div>
+
+	</div>
+
+<div></div> </div> 

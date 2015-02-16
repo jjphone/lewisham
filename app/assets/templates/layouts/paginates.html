@@ -1,0 +1,12 @@
+<div class="menu pagination" ng-if="!content.paginate_empty()">
+	<h5>Pagination</h5>
+	
+	<span>
+		{{content.j.vs.view.data.paginate.page}} / {{content.j.vs.view.data.paginate.total}} pages
+	</span>
+	<div class="pagination-buttons btn-group btn-group-sm">
+		<a role="button" ng-disabled="content.j.vs.view.data.paginate.page<2" ng-click="content.paginate_page(content.j.vs.view.data.paginate.page-1)" >prev</a>
+		<a role="button" ng-disabled="!content.paginate_has_more()" ng-click="content.paginate_page(content.j.vs.view.data.paginate.page+1)">next</a>
+	</div>
+	
+</div>
