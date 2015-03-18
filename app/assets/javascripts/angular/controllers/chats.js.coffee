@@ -4,16 +4,14 @@
 		chats = this
 		chats.j = Jsonp
 
-		#chats.formFields()
 
 		# overwrite the request response when type = 'tags'
-		# for /search?type=tags&term=user_input
-		chats.userLookup = (type) ->
-			if chats.j.vs.view.data.main.talkers? && chats.j.vs.view.data.main.talkers.length > 0
-				params = {callback: "JSON_CALLBACK", type: 'tags', \
-				term: chats.j.vs.view.data.main.talkers, \
-				avoid: chats.ids_to_s(chats.j.vs.view.data.main.ids).toString() }
-
+		# for /search?type=tags&term=user_input\
+		chats.userLookup = (type, term, avoid_ids) ->
+			if term? && term.length  >0
+				params = {callback: "JSON_CALLBACK", type: type,
+				term: term, \
+				avoid: chats.ids_to_s(avoid_ids).toString() }
 				config = {method: 'jsonp', url: '/search', params: params}
 				q = $q.defer()
 				chats.j.connects(q, config).then( (res) ->
@@ -26,29 +24,19 @@
 					q.reject("Error: /search.jsonp error")
 				)
 			else
-				chats.clearLookup()	
+				chats.clearLookup()
 
 		chats.clearLookup = () ->
 			chats.j.vs.view.data.main.talkers = null
-			chats.j.vs.view.data.main.type = null
+			chats.j.vs.view.data.main.pack.search.type = null
 
-		chats.formFields = () ->
-			unless chats.j.vs.view.data.main?
-				chats.j.vs.view.data.main = {pack: null, type: "search"}
-			unless chats.j.vs.view.data.main.pack?
-				chats.j.vs.view.data.main.pack = {search: null }
-			unless chats.j.vs.view.data.main.pack.search?
-				chats.j.vs.view.data.main.pack.search = {type: 'tags', avoid: null, term: null}
-
-		
-		# convert user tag search result from (view.data) to view.data.main,
-		# without overwrite existing view.data.paginate during displaying chat messages.
-		# view.data.main.pack.search => view.data.main.pack.search
-		# view.data.paginate.pack => view.data.main.pack.search.pack 
+		# rearrange the request result(view.data) 
+		# from data.main.pack.search 
+		# and data.paginate.pack 
+		# into view.data.main.pack.search without overwrite the existing view data
 		chats.usersHints = (data) -> 
-			chats.j.vs.view.data.main.type = 'tags'
-			chats.j.vs.view.data.main.pack = data.main.pack
-			chats.j.vs.view.data.main.pack.search.pack = data.paginate.pack
+			Jsonp.vs.view.data.main.pack.search = data.main.pack.search
+			Jsonp.vs.view.data.main.pack.search.pack = data.paginate.pack
 
 		# list = [{id,tag}, ... ]
 		chats.ids_to_s	= (list) ->
@@ -112,15 +100,7 @@
 		#extract chat list type from paginate path
 		chats.listType = (path) ->
 			type =  path.match(/(\?|&)type=(\w)+/g)
-			if type then type.slice(6) else	'all'
-
-		#send messages#update?type=paginate_type
-		chats.markRead = (chat_id, msg_id) ->
-			url = '/messages/'+msg_id
-			data = {type: chats.listType(chats.j.vs.view.data.paginate.path), chat: chat_id }
-			config = {method: 'patch', url: url, params: data}
-			chats.j.request(config)
-
+			if type? then type[0].slice(6) else 'all'
 
 		# append source list type into show url
 		chats.list_path = (chat_id) ->
@@ -128,9 +108,6 @@
 
 		chats.ownChat = (owner_id) ->
 			chats.j.vs.view.current_user.id == owner_id
-
-		chats.kickUser = (chat_id, user_id) ->
-			1
 
 
 		console.log "--------- chatsCtrl.done"

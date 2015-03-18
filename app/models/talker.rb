@@ -32,7 +32,7 @@ class Talker < ActiveRecord::Base
   end
 
   def self.own_chats_link_to(user_id)
-    Talker.chats_link_to(user_id).where(chats: {user_id: current_user.id});
+    Talker.chats_link_to(user_id).where(chats: {user_id: user_id});
   end
 
 end

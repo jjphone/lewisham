@@ -5,8 +5,14 @@
 		link: (scope, elem, attrs, event) ->
 			elem.on "click", ( event) ->
 				event.preventDefault()
-				config = {method: attrs.ngMethod, url: attrs.href}
+				if attrs.ngMethod? 
+					method = attrs.ngMethod
+				else
+					method = "get"
+				#config = {method: attrs.ngMethod, url: attrs.href}
+				config = {method: method, url: attrs.href}
 				config.headers = {'Content-Type': 'application/json;charset=utf-8'} if attrs.ngMethod == 'patch'
+				console.log("----- ngMethod: config = " , config)
 				Jsonp.request(config)
 	]
 

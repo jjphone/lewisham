@@ -1,4 +1,4 @@
-<!-- view.data.main = {type: 'search', 
+<!-- OBSOLTE view.data.main = {type: 'search', 
 	talkers, 
 	ids: [{id:user.id, tag: user.tag}, .... ]
 	pack: {type: 'user', term, result: [ {id, name, pos, tag, type }, ... ],
@@ -13,9 +13,9 @@
 
 <div> <div>	<div class="add-users">
 	<label id="add-users-label"> <span>add users</span> <i></i> <i></i>	</label>
-	<input id="to" type="text" aria-describedby="add-users-label" ng-model="chats.j.vs.view.data.main.talkers" ng-change="chats.userLookup('tags')" />
+	<input id="to" type="text" aria-describedby="add-users-label" ng-model="chats.j.vs.view.data.main.talkers" ng-change="chats.userLookup('tags', chats.j.vs.view.data.main.talkers, chats.j.vs.view.data.main.ids)" />
 
-	<ul class="autocomplete to" ng-if="chats.j.vs.view.data.main.type=='tags'"  ng-cloak>
+	<ul class="autocomplete to" ng-if="chats.j.vs.view.data.main.pack.search.type=='tags'"  ng-cloak>
 		<li ng-repeat="tag in chats.j.vs.view.data.main.pack.search.pack | limitTo: 5" ng-click="chats.addUser(tag)" >
 			<div ng-bind-html="content.highlight([1,2], tag.type, tag.tag, tag.pos)"></div>
 			<span ng-bind-html="content.highlight([3], tag.type, tag.name, tag.pos)"></span>
@@ -23,6 +23,8 @@
 		
 		<li class="not-hint" ng-if="chats.j.vs.view.data.main.pack.search.pack.length<1" >No match found on '{{chats.j.vs.view.data.main.pack.search.term}}'</li>
 	</ul>
+
+
 </div> </div> </div>
 
 <div id="toID">	<div> 

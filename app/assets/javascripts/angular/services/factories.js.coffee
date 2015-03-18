@@ -102,6 +102,8 @@
 							url_param = {callback: "JSON_CALLBACK"}
 						config = {method: "JSONP", url: $location.url(), params: url_param }
 						this.request(config)
+				console.log("-------------------setView :: ViewService = ", ViewService)
+				ViewService.persist = false
 				ViewService.view
 		}
 	])

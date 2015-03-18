@@ -11,7 +11,7 @@ module ChatsHelper
 		end		
 	end
 
-	def chats_to_view(talkers, flashs, link)
+	def chats_to_view(talkers, flashs, link, title)
 		json = talkers.map{ |t|
 			if msg = t.chat.latest
 				t.chat.to_h( {message: msg.to_h(nil), read: t.after?(t.chat.updated_at)} )
@@ -19,7 +19,7 @@ module ChatsHelper
 				t.chat.to_h( {read: true} )
 			end
 		}
-		@view = createView(link, chat_html("index"), site_title("Chats"), flashs)
+		@view = createView(link, chat_html("index"), site_title("Chats#{title}"), flashs)
 		@view.paginates("chats", link, talkers, json)
 	end
 
@@ -35,8 +35,10 @@ module ChatsHelper
 		ids = chat.active_users.map{ |u|
 			{id: u.id, tag: u.login, name: u.name, avatar: u.avatar.url }
 		}
-		main = {chat: {id: chat.id, owner: chat.user_id}, ids: ids, modify: false }
-		@view.main = main
+		#main = {chat: {id: chat.id, owner: chat.user_id}, ids: ids, modify: false }
+		# @view.main = main
+		
+		@view.main = {type: "chat", ids: ids, modify: false, pack:{id: chat.id, owner: chat.user_id}}
 	end
 
 	def list_chats(type, user_id, flashs)
@@ -45,17 +47,20 @@ module ChatsHelper
 			key = 'chats#index#unread'
 			chats = Talker.unread_chats_link_to(user_id).paginate(page:params[:page])
 			link = "/chats?type=unread"
+			title = " - Unread"
 		when 'own'
 			key = 'chats#index#own'
 			chats = Talker.own_chats_link_to(user_id).paginate(page:params[:page])
 			link = "/chats?type=own"
+			title = " - Own"
 		else
 			key = 'chats#index#all'
 			chats = Talker.chats_link_to(user_id).paginate(page:params[:page])
 			link = "/chats?type=all"
+			title = ""
 		end
 		link = link + "&page=#{params[:page].to_i.to_s}" if params[:page]
-		chats_to_view(chats, flashs, link)
+		chats_to_view(chats, flashs, link, title)
 		gen_links( get_links("level", key), chats_links )
 	end
 

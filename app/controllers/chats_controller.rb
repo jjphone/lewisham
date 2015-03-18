@@ -2,7 +2,8 @@ class ChatsController < ApplicationController
 	include ChatsHelper
 	before_action :signed_in_user
 	def index
-		list_all(params[:type], nil)
+		type =  params[:type] ? params[:type] : "all"
+		list_all(type, nil)
 	end
 
 	def show
@@ -41,14 +42,17 @@ class ChatsController < ApplicationController
 	def destroy
 		chat = Chat.find_by(id: params[:id])
 		flashs = nil
-		unless chat && chat.deactive(current_user.id)
-			flashs = {error: "Unable to find chat id = #{params[:id].to_i.to_s} on current user"}
+		if chat
+			flashs = {info: chat.deactive(current_user.id)[1]}
+		else
+			flash = {error: "Unable to find chat id = #{params[:id].to_i.to_s} on current user"}
 		end
 		list_all(params[:type], flashs)
 	end
 
 private
 	def list_all(type, flashs)
+
 		list_chats(type, current_user.id, flashs)
 		renderViewWithURL(4,nil)
 	end

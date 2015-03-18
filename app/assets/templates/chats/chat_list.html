@@ -13,9 +13,18 @@
 
 			<aside> <a class="canvas-toggle">x</a> <div>
 				<ul class="aside-select">
-					<li ng-hide="chat.extra.read"><a href="#" ng-click="chats.markRead(chat.id, chat.extra.message.id)">Mark as Read</a></li>
-					<li ng-if="chats.j.vs.view.current_user.id == chat.user"><a ng-href="{{chats.list_path(chat.id)}}" ng-method="delete">Close All Chats</a></li>
-					<li ng-if="chats.j.vs.view.current_user.id != chat.user"><a ng-href="{{chats.list_path(chat.id)}}" ng-method="delete">Quit Chat</a></li>
+
+ 					<li ng-hide="chat.extra.read">
+ 						<a ng-method="patch"
+ 						ng-href="/messages/{{chat.extra.message.id}}?chat={{chat.id}}&type={{chats.listType(chats.j.vs.view.data.paginate.path)}}">Mark as Read</a>
+ 					</li>
+
+					<li>
+						<a ng-method="delete" ng-href="{{chats.list_path(chat.id)}}">
+							<div ng-if="chats.ownChat(chat.user)">Close All Chats</div>
+							<div ng-if="!chats.ownChat(chat.user)">Quit Chat</div>
+						</a>
+					</li>
 				</ul>
 			</div> </aside>
 		</div>

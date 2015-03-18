@@ -64,14 +64,14 @@ class Chat < ActiveRecord::Base
       values = {active: nil, updated_at: DateTime.now}
       self.update(values)
       Talker.where(chat_id: self.id).update_all(values)
-      Message.where(chat_id: self.id).update_all(value)
-      return true
+      Message.where(chat_id: self.id).update_all(values)
+      return [true, "Owner removed the chat group"]
     end
     
-    if talker = Talker.find_by(chat_id: self.id, user_id: user_id)
-      talker.deactive
+    if talker = Talker.find_by(chat_id: self.id, user_id: user_id, active: 1)
+      [talker.deactive, "User quited chat"]
     else
-      false
+      [false, "User is not in the chat with chat id = #{self.id}"]
     end
   end
 

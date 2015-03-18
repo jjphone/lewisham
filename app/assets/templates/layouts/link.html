@@ -1,5 +1,2 @@
 <!--  for both related/level links : {method, name, url} -->
-<div ng-switch="link.method">
-	<a ng-if="link.method&&link.method!='get'" ng-href="{{content.parse_link(link.url, link.sub)}}" ng-method="{{link.method}}" >{{link.name|capitalize}}</a>
-	<a ng-if="!link.method||link.method=='get'" ng-href="{{content.parse_link(link.url, link.sub)}}">{{link.name|capitalize}}</a>
-</div>
+<div><a ng-href="{{content.parse_link(link.url, link.sub)}}" ng-method="{{link.method}}">{{link.name|capitalize}}</a></div>
