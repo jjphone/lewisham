@@ -8,6 +8,7 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -15,10 +16,12 @@
 *.sql
 db/plsql/*
 
+
 /config/*.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+*.bk
 /tmp
 
 /public
